@@ -12,7 +12,7 @@ export default ({ comments }) => {
       content = "This comment is awaiting mederation";
     }
 
-    if (comment.status === "reject") {
+    if (comment.status === "rejected") {
       content = "This comment has been rejected";
     }
 
