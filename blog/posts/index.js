@@ -25,7 +25,8 @@ app.post("/posts", async (req, res) => {
     title,
   };
 
-  await axios.post("http://localhost:4005/events", {
+  const serviceName = "event-bus-srv:4005";
+  await axios.post(`http://${serviceName}/events`, {
     type: "PostCreated",
     data: {
       id,
@@ -36,13 +37,13 @@ app.post("/posts", async (req, res) => {
   res.status(201).send(posts[id]);
 });
 
-app.post('/events',(req, res) =>{
-  console.log('Received Event:', req.body.type);
+app.post("/events", (req, res) => {
+  console.log("Received Event:", req.body.type);
 
-  res.send({})
-})
+  res.send({});
+});
 
 app.listen(4000, () => {
-  console.log('v55')
+  console.log("v55");
   console.log("Listening on 4000");
 });
