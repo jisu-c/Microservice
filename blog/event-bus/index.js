@@ -17,18 +17,21 @@ app.post("/events", (req, res) => {
   axios
     .post(`http://${postServiceName}/events`, event)
     .catch((err) => console.log('Post Service error"', err.message));
-  // // Comment Service
-  // axios
-  //   .post("http://event-bus-srv:4001/events", event)
-  //   .catch((err) => console.log('Comment Service error"', err.message));
-  // // Query Service
-  // axios
-  //   .post("http://localhost:4002/events", event)
-  //   .catch((err) => console.log('Query Service error"', err.message));
-  // // Moderation Service
-  // axios
-  //   .post("http://localhost:4003/events", event)
-  //   .catch((err) => console.log('Moderation Service error"', err.message));
+    
+  // Comment Service
+  axios
+    .post("http://comments-srv:4001/events", event)
+    .catch((err) => console.log('Comment Service error"', err.message));
+
+  // Query Service
+  axios
+    .post("http://query-srv:4002/events", event)
+    .catch((err) => console.log('Query Service error"', err.message));
+
+  // Moderation Service
+  axios
+    .post("http://moderation-srv:4003/events", event)
+    .catch((err) => console.log('Moderation Service error"', err.message));
 
   res.send({ status: "OK" });
 });
